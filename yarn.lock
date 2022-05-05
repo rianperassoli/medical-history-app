@@ -1441,6 +1441,11 @@ svelte-imask@^1.2.0:
   dependencies:
     imask latest
 
+svelte-multiselect@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/svelte-multiselect/-/svelte-multiselect-5.0.1.tgz#1ab8e731066e383084732aa3ca21dac2385e42aa"
+  integrity sha512-SD2Kk7rv5koFQ4rvIrlw2c6c+htQ5LXz45RCH2BbEyTBanXgAhF5mscth9rtEnuoH7nDftNLLdO4zv+4302Rjw==
+
 svelte-navigator@^3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/svelte-navigator/-/svelte-navigator-3.1.5.tgz#f79d78b2c2c5ad907d8b1d3748d3fbe12c32195c"

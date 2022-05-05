@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import * as yup from "yup";
   import { Form, Message } from "svelte-yup";
   import { imask } from "svelte-imask";

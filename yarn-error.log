@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Rian Perassoli\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add dayjs @types/dayjs -D
+  C:\Program Files\nodejs\node.exe C:\Users\Rian Perassoli\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @types/svelte-imask -D
 
 PATH: 
   C:\Users\Rian Perassoli\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Rian Perassoli\bin;C:\Python310\Scripts;C:\Python310;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\ProgramData\chocolatey\bin;C:\Program Files\GitHub CLI;C:\Program Files\PuTTY;C:\Users\Rian Perassoli\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\nodejs;C:\Users\Rian Perassoli\AppData\Local\Microsoft\WindowsApps;C:\Users\Rian Perassoli\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Rian Perassoli\AppData\Roaming\nvm;C:\Users\Rian Perassoli\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fdayjs: Not found
+  Error: https://registry.yarnpkg.com/@types%2fsvelte-imask: Not found
       at Request.params.callback [as _callback] (C:\Users\Rian Perassoli\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:67029:18)
       at Request.self.callback (C:\Users\Rian Perassoli\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140883:22)
       at Request.emit (events.js:315:20)
@@ -42,7 +42,9 @@ npm manifest:
       "@rollup/plugin-node-resolve": "^11.0.0",
       "@rollup/plugin-typescript": "^8.0.0",
       "@tsconfig/svelte": "^2.0.0",
+      "@types/yup": "^0.29.13",
       "axios": "^0.27.2",
+      "dayjs": "^1.11.1",
       "rollup": "^2.3.4",
       "rollup-plugin-css-only": "^3.1.0",
       "rollup-plugin-livereload": "^2.0.0",
@@ -50,8 +52,10 @@ npm manifest:
       "rollup-plugin-terser": "^7.0.0",
       "svelte": "^3.0.0",
       "svelte-check": "^2.0.0",
+      "svelte-imask": "^1.2.0",
       "svelte-navigator": "^3.1.5",
       "svelte-preprocess": "^4.0.0",
+      "svelte-yup": "^1.0.5",
       "tslib": "^2.0.0",
       "typescript": "^4.0.0"
     },
@@ -59,7 +63,8 @@ npm manifest:
       "autoprefixer": "9",
       "postcss": "7",
       "sirv-cli": "^2.0.0",
-      "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+      "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+      "yup": "^0.32.11"
     }
   }
 
@@ -91,6 +96,13 @@ Lockfile:
       "@babel/helper-validator-identifier" "^7.16.7"
       chalk "^2.0.0"
       js-tokens "^4.0.0"
+  
+  "@babel/runtime@^7.15.4":
+    version "7.17.9"
+    resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.17.9.tgz#d19fbf802d01a8cb6cf053a64e472d42c434ba72"
+    integrity sha512-lSiBBvodq29uShpWGNbgFdKYNiFDo5/HIYsaCEY9ff4sb10x9jizo2+pRrSyF4jKZCXqgzuqBOQKbUm90gQwJg==
+    dependencies:
+      regenerator-runtime "^0.13.4"
   
   "@nodelib/fs.scandir@2.1.5":
     version "2.1.5"
@@ -183,6 +195,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
     integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
   
+  "@types/lodash@^4.14.175":
+    version "4.14.182"
+    resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.182.tgz#05301a4d5e62963227eaafe0ce04dd77c54ea5c2"
+    integrity sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==
+  
   "@types/node@*":
     version "17.0.31"
     resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.31.tgz#a5bb84ecfa27eec5e1c802c6bbf8139bdb163a5d"
@@ -211,6 +228,11 @@ Lockfile:
     integrity sha512-BPdoIt1lfJ6B7rw35ncdwBZrAssjcwzI5LByIrYs+tpXlj/CAkuVdRsgZDdP4lq5EjyWzwxZCqAoFyHKFwp32g==
     dependencies:
       "@types/node" "*"
+  
+  "@types/yup@^0.29.13":
+    version "0.29.13"
+    resolved "https://registry.yarnpkg.com/@types/yup/-/yup-0.29.13.tgz#21b137ba60841307a3c8a1050d3bf4e63ad561e9"
+    integrity sha512-qRyuv+P/1t1JK1rA+elmK1MmCL1BapEzKKfbEhDBV/LMMse4lmhZ/XbgETI39JveDJRpLjmToOI6uFtMW/WR2g==
   
   acorn-node@^1.6.1:
     version "1.8.2"
@@ -490,6 +512,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
     integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
   
+  dayjs@^1.11.1:
+    version "1.11.1"
+    resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.1.tgz#90b33a3dda3417258d48ad2771b415def6545eb0"
+    integrity sha512-ER7EjqVAMkRRsxNCC5YqJ9d9VQYuWdGt7aiH2qA5R5wt8ZmWaP2dLUSIK6y/kVzLMlmh1Tvu5xUf4M/wdGJ5KA==
+  
   dedent-js@^1.0.1:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/dedent-js/-/dedent-js-1.0.1.tgz#bee5fb7c9e727d85dffa24590d10ec1ab1255305"
@@ -712,6 +739,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-3.2.0.tgz#dbb3518d20b726524e4dd43de397eb0a95726961"
     integrity sha512-vy7ClnArOZwCnqZgvv+ddgHgJiAFXe3Ge9ML5/mBctVJoUoYPCdxVucOywjDARn6CVoh3dRSFdPHy2sX80L0Wg==
   
+  imask@latest:
+    version "6.4.2"
+    resolved "https://registry.yarnpkg.com/imask/-/imask-6.4.2.tgz#f1c67e6961640bf5b09d7b4a34dcf4f9a3df7e22"
+    integrity sha512-xvEgbTdk6y2dW2UAysq0NRPmO6PuaXM5NHIt4TXEJEwXUHj26M0p/fXqyrSJdNXFaGVOtqYjPRnNdrjQQhDuuA==
+  
   import-fresh@^3.2.1:
     version "3.3.0"
     resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.3.0.tgz#37162c25fcb9ebaa2e6e53d5b4d88ce17d9e0c2b"
@@ -861,6 +893,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/local-access/-/local-access-1.1.0.tgz#e007c76ba2ca83d5877ba1a125fc8dfe23ba4798"
     integrity sha512-XfegD5pyTAfb+GY6chk283Ox5z8WexG56OvM06RWLpAc/UHozO8X6xAxEkIitZOtsSMM1Yr3DkHgW5W+onLhCw==
   
+  lodash-es@^4.17.21:
+    version "4.17.21"
+    resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+    integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
+  
   lodash.sortby@^4.7.0:
     version "4.7.0"
     resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
@@ -958,6 +995,11 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/mrmime/-/mrmime-1.0.0.tgz#14d387f0585a5233d291baba339b063752a2398b"
     integrity sha512-a70zx7zFfVO7XpnQ2IX1Myh9yY4UYvfld/dikWRnsXxbyvMcfz+u6UfgNAtH+k2QqtJuzVpv6eLTx1G2+WKZbQ==
+  
+  nanoclone@^0.2.1:
+    version "0.2.1"
+    resolved "https://registry.yarnpkg.com/nanoclone/-/nanoclone-0.2.1.tgz#dd4090f8f1a110d26bb32c49ed2f5b9235209ed4"
+    integrity sha512-wynEP02LmIbLpcYw8uBKpcfF6dmg2vcpKqxeH5UcoKEYdExslsdUA4ugFauuaeYdTB76ez6gJW8XAZ6CgkXYxA==
   
   nanoid@^3.3.3:
     version "3.3.4"
@@ -1159,6 +1201,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
     integrity sha1-t+PqQkNaTJsnWdmeDyAesZWALuE=
   
+  property-expr@^2.0.4:
+    version "2.0.5"
+    resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-2.0.5.tgz#278bdb15308ae16af3e3b9640024524f4dc02cb4"
+    integrity sha512-IJUkICM5dP5znhCckHSv30Q4b5/JA5enCtkRHYaOVOAocnH/1BQEYTC5NMfT3AVl/iXKdr3aqQbQn9DxyWknwA==
+  
   punycode@^2.1.0:
     version "2.1.1"
     resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
@@ -1205,6 +1252,11 @@ Lockfile:
     dependencies:
       css-unit-converter "^1.1.1"
       postcss-value-parser "^3.3.0"
+  
+  regenerator-runtime@^0.13.4:
+    version "0.13.9"
+    resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz#8925742a98ffd90814988d7566ad30ca3b263b52"
+    integrity sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==
   
   require-relative@^0.8.7:
     version "0.8.7"
@@ -1456,6 +1508,13 @@ Lockfile:
       svelte-preprocess "^4.0.0"
       typescript "*"
   
+  svelte-imask@^1.2.0:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/svelte-imask/-/svelte-imask-1.2.0.tgz#3afba979e555dc200ac8abf6fc32dba3b0c59c38"
+    integrity sha512-5LNUhokQ3rG3jkjIxewI2VIxoOYdrBCcnLIUddA9qmIO9dhDH+Qs2FkKm7wRsZy3x6WbwOjB4EvEoTMR8KrFqg==
+    dependencies:
+      imask latest
+  
   svelte-navigator@^3.1.5:
     version "3.1.5"
     resolved "https://registry.yarnpkg.com/svelte-navigator/-/svelte-navigator-3.1.5.tgz#f79d78b2c2c5ad907d8b1d3748d3fbe12c32195c"
@@ -1474,6 +1533,11 @@ Lockfile:
       magic-string "^0.25.7"
       sorcery "^0.10.0"
       strip-indent "^3.0.0"
+  
+  svelte-yup@^1.0.5:
+    version "1.0.5"
+    resolved "https://registry.yarnpkg.com/svelte-yup/-/svelte-yup-1.0.5.tgz#5f15f5a5f60348bc4fe71d707f5c2f17b9a3afb0"
+    integrity sha512-7PDwqk1cAAnrsWimp63oSvHUp2+YcQtLgyqpOlxMRz6fs4dZbR/f8yzrQuL0cyFkUn6eVGvV6lNkflXqTdHjmQ==
   
   svelte2tsx@^0.1.151:
     version "0.1.193"
@@ -1558,6 +1622,11 @@ Lockfile:
     dependencies:
       is-number "^7.0.0"
   
+  toposort@^2.0.2:
+    version "2.0.2"
+    resolved "https://registry.yarnpkg.com/toposort/-/toposort-2.0.2.tgz#ae21768175d1559d48bef35420b2f4962f09c330"
+    integrity sha1-riF2gXXRVZ1IvvNUILL0li8JwzA=
+  
   totalist@^3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/totalist/-/totalist-3.0.0.tgz#4ef9c58c5f095255cdc3ff2a0a55091c57a3a1bd"
@@ -1623,3 +1692,16 @@ Lockfile:
     version "1.10.2"
     resolved "https://registry.yarnpkg.com/yaml/-/yaml-1.10.2.tgz#2301c5ffbf12b467de8da2333a459e29e7920e4b"
     integrity sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==
+  
+  yup@^0.32.11:
+    version "0.32.11"
+    resolved "https://registry.yarnpkg.com/yup/-/yup-0.32.11.tgz#d67fb83eefa4698607982e63f7ca4c5ed3cf18c5"
+    integrity sha512-Z2Fe1bn+eLstG8DRR6FTavGD+MeAwyfmouhHsIUgaADz8jvFKbO/fXc2trJKZg+5EBjh4gGm3iU/t3onKlXHIg==
+    dependencies:
+      "@babel/runtime" "^7.15.4"
+      "@types/lodash" "^4.14.175"
+      lodash "^4.17.21"
+      lodash-es "^4.17.21"
+      nanoclone "^0.2.1"
+      property-expr "^2.0.4"
+      toposort "^2.0.2"

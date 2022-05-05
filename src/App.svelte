@@ -1,32 +1,47 @@
 <script lang="ts">
-	import { Router, Route } from "svelte-navigator";
+	import {
+		Router,
+		Route,
+		useNavigate,
+		useLocation,
+		Link,
+	} from "svelte-navigator";
+
+	// const navigate = useNavigate();
+	// const location = useLocation();
 
 	import Home from "./pages/Home.svelte";
 	import Summary from "./pages/Summary.svelte";
 	import BasicInformation from "./pages/BasicInformation.svelte";
 	import MedicalHistory from "./pages/MedicalHistory.svelte";
+
+	// const handleNewClick = () => {
+	// 	navigate("/basic-information", {
+	// 		state: { from: $location.pathname },
+	// 		replace: false,
+	// 	});
+	// };
 </script>
 
 <main class="h-screen w-screen bg-gray-200">
-	<header class="bg-purple-600">
-		<div class="flex max-w-4xl m-auto">
-			<div class="flex-auto">
-				<p class="text-gray-100 text-2xl font-bold text-center p-5">
-					Medical History
-				</p>
-			</div>
-	
-			<button
-				class="bg-white hover:bg-purple-600 text-purple-600 
-												 font-semibold hover:text-white py-2 px-4 m-2
-												 border-6 border-purple-300 hover:border-transparent rounded"
-			>
-				+ new
-			</button>
-		</div>
-	</header>
-
 	<Router>
+		<header class="bg-purple-600">
+			<div class="flex max-w-4xl m-auto">
+				<div class="flex-auto">
+					<p class="text-gray-100 text-2xl font-bold text-center p-5">
+						Medical History
+					</p>
+				</div>
+
+				<button
+					class="bg-white hover:bg-purple-600 text-purple-600 
+			           font-semibold hover:text-white py-2 px-4 m-2
+				         border-2 border-purple-500 rounded" >
+					<Link to="/basic-information">+ new</Link>
+				</button>
+			</div>
+		</header>
+
 		<Route path="/" component={Home} />
 		<Route path="/summary/:email" component={Summary} />
 		<Route path="/basic-information" component={BasicInformation} />

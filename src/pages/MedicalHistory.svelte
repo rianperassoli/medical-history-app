@@ -59,8 +59,6 @@
     if (isValid) {
       const response = await api.post(`/user/${$user.id}/medical-history`, fields);
 
-      console.log(response.data);  
-      
       redirectToHome()
     }
   };
@@ -167,8 +165,6 @@
         </div>
       </div>
     {/if}
-
-    {console.log(fields.pregnant)}
 
     {#if fields.illnesses.length}
       <button

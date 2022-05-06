@@ -3,8 +3,10 @@
   import * as yup from "yup";
   import { Form, Message } from "svelte-yup";
   import { imask } from "svelte-imask";
+
   import { user } from "../stores";
   import { api } from "../services/api";
+  import * as stringUtil from "../util/StringUtil";
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,8 +26,8 @@
 
   let schema = yup.object().shape({
     email: yup.string().required().email().label("Email"),
-    first_name: yup.string().required().uppercase().label("First name"),
-    last_name: yup.string().required().uppercase().label("Last name"),
+    first_name: yup.string().required().label("First name"),
+    last_name: yup.string().required().label("Last name"),
     gender: yup.string().required().label("Gender"),
     phone: yup
       .string()
@@ -53,8 +55,8 @@
     submitted = true;
     isValid = schema.isValidSync(fields);
     if (isValid) {
-      fields.first_name  = fields.first_name.toUpperCase()
-      fields.last_name  = fields.last_name.toUpperCase()
+      fields.first_name = stringUtil.capitalize(fields.first_name);
+      fields.last_name = stringUtil.capitalize(fields.last_name);
 
       const response = await api.post("/user", fields);
 
@@ -66,10 +68,8 @@
   };
 </script>
 
-<div
-  class="m-auto mt-20 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded"
->
-  <Form
+<div class="m-auto mt-20 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded">
+   <Form
     class="form flex flex-col p-50"
     {schema}
     {fields}

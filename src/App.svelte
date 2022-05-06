@@ -1,26 +1,10 @@
 <script lang="ts">
-	import {
-		Router,
-		Route,
-		useNavigate,
-		useLocation,
-		Link,
-	} from "svelte-navigator";
-
-	// const navigate = useNavigate();
-	// const location = useLocation();
+	import { Router, Route, Link } from "svelte-navigator";
 
 	import Home from "./pages/Home.svelte";
 	import Summary from "./pages/Summary.svelte";
 	import BasicInformation from "./pages/BasicInformation.svelte";
 	import MedicalHistory from "./pages/MedicalHistory.svelte";
-
-	// const handleNewClick = () => {
-	// 	navigate("/basic-information", {
-	// 		state: { from: $location.pathname },
-	// 		replace: false,
-	// 	});
-	// };
 </script>
 
 <main class="h-screen w-screen bg-gray-200">
@@ -36,7 +20,8 @@
 				<button
 					class="bg-white hover:bg-purple-600 text-purple-600 
 			           font-semibold hover:text-white py-2 px-4 m-2
-				         border-2 border-purple-500 rounded" >
+				         border-2 border-purple-500 rounded"
+				>
 					<Link to="/basic-information">+ new</Link>
 				</button>
 			</div>

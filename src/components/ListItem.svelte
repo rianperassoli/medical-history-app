@@ -4,7 +4,7 @@
   const navigate = useNavigate();
   const location = useLocation();
 
-  export let name: string = "";
+  export let fullname: string = "";
   export let gender: string = "";
   export let email: string = "";
   export let birthdate: string = "";
@@ -23,7 +23,7 @@
     
     <div class="space-y-0.5">
       <div class="flex">    
-        <p class="flex-auto text-lg text-black font-bold">{name}</p>
+        <p class="flex-auto text-lg text-black font-bold">{fullname}</p>
         <p class="flex-none text-xs text-gray-300 text-right">created at {created_at}</p>
       </div>
       <p class="text-sm text-gray-500">{email}</p>

@@ -5,9 +5,7 @@
   import * as dateUtil from "../util/DateUtil";
 
   interface IUser {
-    name: string;
-    first_name: string;
-    last_name: string;
+    fullname: string;
     birthdate: string;
     age: number;
     gender: string;
@@ -21,8 +19,7 @@
 
     if (response.data) {
       users = response.data.map((user: IUser) => {
-        const name = `${user.first_name} ${user.last_name}`;
-        const age = dateUtil.diffYearsFromToday(user.birthdate);
+        // const age = dateUtil.diffYearsFromToday(user.birthdate);
 
         user.birthdate = dateUtil.formatDate(user.birthdate);
         user.created_at = dateUtil.formatDateTime(user.created_at);
@@ -40,7 +37,7 @@
             break;
         }
 
-        return { ...user, name, age };
+        return { ...user };
       });
     }
   }

@@ -29,8 +29,6 @@
         user.gender = "";
         break;
     }
-
-    console.log(user);
   });
 </script>
 

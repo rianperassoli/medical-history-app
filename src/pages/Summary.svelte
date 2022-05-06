@@ -5,7 +5,7 @@
   import { api } from "../services/api";
   import * as dateUtil from "../util/DateUtil";
 
-  export let email = "rian@email.com";
+  export let email;
 
   let user = null;
 
@@ -66,7 +66,7 @@
             </p>
             {#if user.gender === "Female"}
               <p class="text-pink-500 text-base">
-                {`Pregnant: ${user.pregnant ? "Yes" : "No"}`}
+                {`Pregnant: ${user.medicalHistory.pregnant ? "Yes" : "No"}`}
               </p>
             {/if}
 

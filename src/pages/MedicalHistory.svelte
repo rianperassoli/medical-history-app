@@ -1,7 +1,20 @@
 <script lang="ts">
   import * as yup from "yup";
+  import { useNavigate, useLocation } from "svelte-navigator";
   import { Form, Message } from "svelte-yup";
   import MultiSelect from "svelte-multiselect";
+  import { user } from "../stores";
+  import { api } from "../services/api";
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const redirectToHome = () => {
+    navigate(`/`, {
+      state: { from: $location.pathname },
+      replace: false,
+    });
+  };
 
   const medicalConditions: string[] = [
     "Anxiety",
@@ -12,8 +25,7 @@
     "Insomnia",
     "Migraines",
   ];
-  let gender = "M";
-  let selected = [];
+  let gender = $user && $user.gender || 'F';
 
   let schema = yup.object().shape({
     illnesses: yup.array().min(1).label("Conditions"),
@@ -41,30 +53,32 @@
 
   let submitted = false;
   let isValid;
-  function formSubmit() {
+  const formSubmit = async () => {
     submitted = true;
     isValid = schema.isValidSync(fields);
     if (isValid) {
-      alert("Everything is validated!");
+      const response = await api.post(`/user/${$user.id}/medical-history`, fields);
+
+      console.log(response.data);  
+      
+      redirectToHome()
     }
-  }
+  };
 
   const handleChangeMultipleSelect = (event) => {
-    console.log(event.detail);
-    
     switch (event.detail.type) {
       case "add":
         fields.illnesses.push(event.detail.option);
         break;
-      case "remove":  
-        fields.illnesses = fields.illnesses.filter(item => item !== event.detail.option);
+      case "remove":
+        fields.illnesses = fields.illnesses.filter(
+          (item) => item !== event.detail.option
+        );
         break;
-      case "removeAll":  
+      case "removeAll":
         fields.illnesses = [];
         break;
     }
-
-    console.log(fields.illnesses);
   };
 </script>
 
@@ -146,15 +160,15 @@
             type="checkbox"
             bind:checked={fields.pregnant}
           />
-          <p
-            class="block tracking-wide text-gray-700 text-sm font-semibold mb-2"
-          >
+          <p class="block tracking-wide text-gray-700 text-sm font-semibold mb-2">
             I'm pregnant
           </p>
           <Message name="pregnant" />
         </div>
       </div>
     {/if}
+
+    {console.log(fields.pregnant)}
 
     {#if fields.illnesses.length}
       <button

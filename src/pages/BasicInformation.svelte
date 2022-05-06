@@ -1,7 +1,20 @@
 <script lang="ts">
+  import { useNavigate, useLocation } from "svelte-navigator";
   import * as yup from "yup";
   import { Form, Message } from "svelte-yup";
   import { imask } from "svelte-imask";
+  import { user } from "../stores";
+  import { api } from "../services/api";
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const redirectToMedicalHistory = () => {
+    navigate(`/medical-history`, {
+      state: { from: $location.pathname },
+      replace: false,
+    });
+  };
 
   const phoneRegExp = /^\(\d{2}\) \d{4,5}-\d{3,4}$/gi;
 
@@ -36,13 +49,21 @@
 
   let submitted = false;
   let isValid;
-  function formSubmit() {
+  const formSubmit = async () => {
     submitted = true;
     isValid = schema.isValidSync(fields);
     if (isValid) {
-      alert("Everything is validated!");
+      fields.first_name  = fields.first_name.toUpperCase()
+      fields.last_name  = fields.last_name.toUpperCase()
+
+      const response = await api.post("/user", fields);
+
+      const newUser = response.data;
+      user.set(newUser);
+
+      redirectToMedicalHistory();
     }
-  }
+  };
 </script>
 
 <div
@@ -64,7 +85,7 @@
           First Name
         </label>
         <input
-          class="appearance-none block uppercase w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
           type="text"
           bind:value={fields.first_name}
@@ -80,7 +101,7 @@
           Last Name
         </label>
         <input
-          class="appearance-none block uppercase w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
           type="text"
           bind:value={fields.last_name}

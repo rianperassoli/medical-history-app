@@ -7,6 +7,7 @@
   import { user } from "../stores";
   import { api } from "../services/api";
   import * as stringUtil from "../util/StringUtil";
+  import HeaderPage from "../components/HeaderPage.svelte";
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,6 +24,8 @@
   const options = {
     mask: "(00) 00000-0000",
   };
+
+  let messageError = "";
 
   let schema = yup.object().shape({
     email: yup.string().required().email().label("Email"),
@@ -58,24 +61,67 @@
       fields.first_name = stringUtil.capitalize(fields.first_name);
       fields.last_name = stringUtil.capitalize(fields.last_name);
 
-      const response = await api.post("/user", fields);
+      try {
+        const response = await api.post("/user", fields);
 
-      const newUser = response.data;
-      user.set(newUser);
+        if (response.data) {
+          const newUser = response.data;
 
-      redirectToMedicalHistory();
+          user.set(newUser);
+
+          redirectToMedicalHistory();
+        }
+      } catch (error) {
+        if (error.response.data.message) {
+          messageError = error.response.data.message;
+        } else {
+          messageError = "Fail to create. Try again."
+        }
+
+        setTimeout(() => {
+          messageError = "";
+        }, 3000);
+      }
     }
   };
 </script>
 
-<div class="m-auto mt-20 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded">
-   <Form
+<HeaderPage title={"Basic information"} showBackButton/>
+
+<div
+  class="m-auto mt-5 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded"
+>
+  <Form
     class="form flex flex-col p-50"
     {schema}
     {fields}
     submitHandler={formSubmit}
     {submitted}
   >
+    {#if messageError}
+      <div
+        class="bg-red-100 rounded-lg py-5 px-6 mb-3 text-base text-red-700 inline-flex items-center w-full"
+        role="alert"
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fas"
+          data-icon="times-circle"
+          class="w-4 h-4 mr-2 fill-current"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"
+          />
+        </svg>
+        {messageError}
+      </div>
+    {/if}
+
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label

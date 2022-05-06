@@ -1,10 +1,15 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { useNavigate } from "svelte-navigator";
+  import HeaderPage from "../components/HeaderPage.svelte";
 
   import Loading from "../components/Loading.svelte";
   import { api } from "../services/api";
   import * as dateUtil from "../util/DateUtil";
 
+  import { user as userStored } from "../stores";
+
+  const navigate = useNavigate()
   export let email;
 
   let user = null;
@@ -30,11 +35,16 @@
         break;
     }
   });
+
+  const handleClickAddMedicalConditions = () => {
+    userStored.set(user);
+    navigate(`/medical-history`);
+  };
 </script>
 
-<div
-  class="m-auto mt-20 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded"
->
+<HeaderPage title={"Summary"} showBackButton />
+
+<div class="m-auto mt-5 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded">
   {#if user}
     <div class="flex flex-col">
       <div class="flex inline-flex items-center">
@@ -56,40 +66,49 @@
         {/if}
       </div>
 
-      <div class="flex inline-flex">
-        <div class="w-2/4 rounded overflow-hidden m-1">
-          <div class="px-6 py-4">
-            <p class="text-gray-700 text-base">
-              {`${user.gender}, ${user.age} years old`}
-            </p>
-            {#if user.gender === "Female"}
-              <p class="text-pink-500 text-base">
-                {`Pregnant: ${user.medicalHistory.pregnant ? "Yes" : "No"}`}
+      {#if user.medicalHistory}
+        <div class="flex inline-flex">
+          <div class="w-2/4 rounded overflow-hidden m-1">
+            <div class="px-6 py-4">
+              <p class="text-gray-700 text-base">
+                {`${user.gender}, ${user.age} years old`}
               </p>
-            {/if}
+              {#if user.gender === "Female"}
+                <p class="text-pink-500 text-base">
+                  {`Pregnant: ${user.medicalHistory.pregnant ? "Yes" : "No"}`}
+                </p>
+              {/if}
 
-            <p class="text-gray-700 text-base">Birthdate: {user.birthdate}</p>
-            <p class="text-gray-700 text-base">
-              {`Height ${user.medicalHistory.height / 100} m`}
-            </p>
-            <p class="text-gray-700 text-base">
-              {`Weight ${user.medicalHistory.weight} kgs`}
-            </p>
-          </div>
-        </div>
-
-        <div class="w-2/4 rounded overflow-hidden m-1">
-          <div class="px-6 py-4">
-            <div class="text-gray-700 font-bold text-xl mb-2">
-              Medical conditions
+              <p class="text-gray-700 text-base">Birthdate: {user.birthdate}</p>
+              <p class="text-gray-700 text-base">
+                {`Height ${user.medicalHistory.height / 100} m`}
+              </p>
+              <p class="text-gray-700 text-base">
+                {`Weight ${user.medicalHistory.weight} kgs`}
+              </p>
             </div>
+          </div>
 
-            {#each user.medicalHistory.illnesses as illness}
-              <p class="text-gray-700 text-base">{illness}</p>
-            {/each}
+          <div class="w-2/4 rounded overflow-hidden m-1">
+            <div class="px-6 py-4">
+              <div class="text-gray-700 font-bold text-xl mb-2">
+                Medical conditions
+              </div>
+
+              {#each user.medicalHistory.illnesses as illness}
+                <p class="text-gray-700 text-base">{illness}</p>
+              {/each}
+            </div>
           </div>
         </div>
-      </div>
+      {:else}
+        <span
+          class="no-underline hover:underline text-purple-600 cursor-pointer"
+          on:click={handleClickAddMedicalConditions}
+        >
+          You have no medical conditions, click to insert.
+        </span>
+      {/if}
     </div>
 
     <div>

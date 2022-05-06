@@ -3,9 +3,10 @@
   import { useNavigate, useLocation } from "svelte-navigator";
   import { Form, Message } from "svelte-yup";
   import MultiSelect from "svelte-multiselect";
-  
+
   import { user } from "../stores";
   import { api } from "../services/api";
+  import HeaderPage from "../components/HeaderPage.svelte";
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,7 +27,9 @@
     "Insomnia",
     "Migraines",
   ];
-  let gender = $user && $user.gender || 'F';
+  let gender = $user && $user.gender;
+
+  let messageError = "";
 
   let schema = yup.object().shape({
     illnesses: yup.array().min(1).label("Conditions"),
@@ -58,9 +61,20 @@
     submitted = true;
     isValid = schema.isValidSync(fields);
     if (isValid) {
-      const response = await api.post(`/user/${$user.id}/medical-history`, fields);
+      try {
+        const response = await api.post(
+          `/user/${$user.id}/medical-history`,
+          fields
+        );
 
-      redirectToHome()
+        redirectToHome();
+      } catch (error) {
+        messageError = 'Fail to create a medical history. Try again.';
+
+        setTimeout(() => {
+          messageError = "";
+        }, 3000);
+      }
     }
   };
 
@@ -81,9 +95,9 @@
   };
 </script>
 
-<div
-  class="m-auto mt-20 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded"
->
+<HeaderPage title={"Medical conditions"} showBackButton />
+
+<div class="m-auto mt-5 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded">
   <Form
     class="form flex flex-col p-50"
     {schema}
@@ -91,6 +105,30 @@
     submitHandler={formSubmit}
     {submitted}
   >
+    {#if messageError}
+      <div
+        class="bg-red-100 rounded-lg py-5 px-6 mb-3 text-base text-red-700 inline-flex items-center w-full"
+        role="alert"
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fas"
+          data-icon="times-circle"
+          class="w-4 h-4 mr-2 fill-current"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"
+          />
+        </svg>
+        {messageError}
+      </div>
+    {/if}
+
     <div class="flex flex-wrap -mx-3 mb-3">
       <div class="w-full px-3 mb-6 md:mb-0">
         <label
@@ -159,7 +197,9 @@
             type="checkbox"
             bind:checked={fields.pregnant}
           />
-          <p class="block tracking-wide text-gray-700 text-sm font-semibold mb-2">
+          <p
+            class="block tracking-wide text-gray-700 text-sm font-semibold mb-2"
+          >
             I'm pregnant
           </p>
           <Message name="pregnant" />
@@ -172,7 +212,7 @@
         type="submit"
         class="bg-white hover:bg-purple-600 text-purple-600 
            font-semibold hover:text-white py-2 px-4 mt-10
-           border-2 border-purple-500 rounded">continue</button
+           border-2 border-purple-500 rounded">save</button
       >
     {:else}
       <button
@@ -181,7 +221,7 @@
              font-semibold py-2 px-4 mt-10
              border-2 border-purple-500 rounded opacity-50 cursor-not-allowed"
       >
-        continue
+        save
       </button>
     {/if}
   </Form>

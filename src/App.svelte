@@ -7,7 +7,7 @@
 	import MedicalHistory from "./pages/MedicalHistory.svelte";
 </script>
 
-<main class="h-screen w-screen bg-gray-200">
+<main class="min-h-screen w-screen bg-gray-200">
 	<Router>
 		<header class="bg-purple-600">
 			<div class="flex max-w-4xl m-auto">
@@ -16,14 +16,6 @@
 						Medical History
 					</p>
 				</div>
-
-				<button
-					class="bg-white hover:bg-purple-600 text-purple-600 
-			           font-semibold hover:text-white py-2 px-4 m-2
-				         border-2 border-purple-500 rounded"
-				>
-					<Link to="/basic-information">+ new</Link>
-				</button>
 			</div>
 		</header>
 

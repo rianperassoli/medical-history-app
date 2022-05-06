@@ -3,6 +3,7 @@
 
   import ListItem from "../components/ListItem.svelte";
   import * as dateUtil from "../util/DateUtil";
+  import HeaderPage from "../components/HeaderPage.svelte";
 
   interface IUser {
     fullname: string;
@@ -19,8 +20,6 @@
 
     if (response.data) {
       users = response.data.map((user: IUser) => {
-        // const age = dateUtil.diffYearsFromToday(user.birthdate);
-
         user.birthdate = dateUtil.formatDate(user.birthdate);
         user.created_at = dateUtil.formatDateTime(user.created_at);
 
@@ -44,6 +43,8 @@
 
   loadData();
 </script>
+
+<HeaderPage title='Medical history list' />
 
 <section class="flex flex-col items-center">
   {#each users as user}

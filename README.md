@@ -24,7 +24,7 @@ or
 npm run build
 ```
 
-...and start the app using...
+...and start the app using
 
 ```bash
 yarn start

@@ -33,3 +33,5 @@ or
 
 npm run start
 ```
+
+Open your browser and access the url to use the app: http://localhost:8080

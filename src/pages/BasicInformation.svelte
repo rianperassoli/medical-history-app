@@ -40,7 +40,7 @@
         phoneRegExp,
         `The phone number must be on format ${options.mask}`
       ),
-    birthdate: yup.date().required().label("Birthdate"),
+    birthdate: yup.date().max(new Date(), 'Birthdate must be earlier than today').required().label("Birthdate"),
   });
 
   let fields = {

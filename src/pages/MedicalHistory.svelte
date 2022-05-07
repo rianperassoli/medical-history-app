@@ -42,12 +42,14 @@ import SuccessMessage from "../components/SuccessMessage.svelte";
       .typeError("Height must be a number")
       .positive("Height must be a positive value")
       .required()
+      .max(300, 'Height must be 300 cm (3 mts) or less')
       .label("Height"),
     weight: yup
       .number()
       .typeError("Weight must be a number")
       .positive("Weight must be a positive value")
       .required()
+      .max(999, 'Weight must be less than 1000 kg')
       .label("Weight"),
   });
 

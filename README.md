@@ -1,4 +1,9 @@
-This is a simple app to store some information about patients and their medical conditions. This application was created for teaching purposes.
+This application was created for teaching purposes.
+
+This is a simple app to store some information about patients and their medical conditions.
+
+Built with Svelte: https://svelte.dev/ 
+Styled with TailwindCSS: https://tailwindcss.com/
 
 You need this API running to test the app: https://github.com/rianperassoli/medical-history-api
 

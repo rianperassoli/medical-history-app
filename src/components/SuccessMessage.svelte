@@ -1,20 +1,4 @@
-<script lang="ts">
-  import { useNavigate } from "svelte-navigator";
-
-  const navigate = useNavigate();
-
-  const handleHome = () => {
-    navigate("/");
-  };
-
-  const handleNew = () => {
-    navigate("basic-information");
-  };
-</script>
-
-<div
-  class="bg-gray-800 flex flex-col items-center justify-center"
->
+<div class="absolute top-0 bg-gray-800 h-screen w-screen flex flex-col items-center justify-center object-top">
   <svg
     class="w-24 h-24 text-green-500"
     fill="none"
@@ -29,6 +13,5 @@
     />
   </svg>
 
-  <span class='mt-5 text-gray-300 font-semibold'>added successfully</span>
-  
+  <span class="my-5 text-gray-300 font-semibold">added successfully</span>
 </div>

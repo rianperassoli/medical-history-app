@@ -7,14 +7,16 @@
 	import MedicalHistory from "./pages/MedicalHistory.svelte";
 </script>
 
-<main class="min-h-screen w-screen bg-gray-200">
+<main class="static min-h-screen w-screen bg-gray-200">
 	<Router>
 		<header class="bg-purple-600">
 			<div class="flex max-w-4xl m-auto">
 				<div class="flex-auto">
-					<p class="text-gray-100 text-2xl font-bold text-center p-5">
-						Medical History
-					</p>
+					<Link to="/">
+						<p class="text-gray-100 text-2xl font-bold text-center p-5">
+							Medical History
+						</p>
+					</Link>
 				</div>
 			</div>
 		</header>

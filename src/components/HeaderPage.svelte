@@ -11,7 +11,7 @@
   };
 
   const handleNew = () => {
-    navigate('basic-information');
+    navigate('/basic-information');
   };
 </script>
 

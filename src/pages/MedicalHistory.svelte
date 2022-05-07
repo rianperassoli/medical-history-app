@@ -7,6 +7,7 @@
   import { user } from "../stores";
   import { api } from "../services/api";
   import HeaderPage from "../components/HeaderPage.svelte";
+import SuccessMessage from "../components/SuccessMessage.svelte";
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -30,6 +31,8 @@
   let gender = $user && $user.gender;
 
   let messageError = "";
+
+  let showSuccessMessage = false;
 
   let schema = yup.object().shape({
     illnesses: yup.array().min(1).label("Conditions"),
@@ -67,9 +70,14 @@
           fields
         );
 
-        redirectToHome();
+        showSuccessMessage = true;
+
+        setTimeout(() => {
+          showSuccessMessage = false;
+          redirectToHome();
+        }, 1500);
       } catch (error) {
-        messageError = 'Fail to create a medical history. Try again.';
+        messageError = "Fail to create a medical history. Try again.";
 
         setTimeout(() => {
           messageError = "";
@@ -95,134 +103,140 @@
   };
 </script>
 
-<HeaderPage title={"Medical conditions"} showBackButton />
+{#if showSuccessMessage}
+  <SuccessMessage />
+{:else}
+  <HeaderPage title={"Medical conditions"} showBackButton />
 
-<div class="m-auto mt-5 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded">
-  <Form
-    class="form flex flex-col p-50"
-    {schema}
-    {fields}
-    submitHandler={formSubmit}
-    {submitted}
+  <div
+    class="m-auto mt-5 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded"
   >
-    {#if messageError}
-      <div
-        class="bg-red-100 rounded-lg py-5 px-6 mb-3 text-base text-red-700 inline-flex items-center w-full"
-        role="alert"
-      >
-        <svg
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fas"
-          data-icon="times-circle"
-          class="w-4 h-4 mr-2 fill-current"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
+    <Form
+      class="form flex flex-col p-50"
+      {schema}
+      {fields}
+      submitHandler={formSubmit}
+      {submitted}
+    >
+      {#if messageError}
+        <div
+          class="bg-red-100 rounded-lg py-5 px-6 mb-3 text-base text-red-700 inline-flex items-center w-full"
+          role="alert"
         >
-          <path
-            fill="currentColor"
-            d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"
-          />
-        </svg>
-        {messageError}
-      </div>
-    {/if}
-
-    <div class="flex flex-wrap -mx-3 mb-3">
-      <div class="w-full px-3 mb-6 md:mb-0">
-        <label
-          class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
-          for="grid-conditions"
-        >
-          Conditions (select at least 1)
-        </label>
-
-        <MultiSelect
-          inputClass="h-10"
-          options={medicalConditions}
-          selectedValues={fields.illnesses}
-          on:change={handleChangeMultipleSelect}
-          on:remove={handleChangeMultipleSelect}
-        />
-        <Message name="illnesses" />
-      </div>
-    </div>
-
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <label
-          class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
-          for="grid-height"
-        >
-          Height (cm)
-        </label>
-        <input
-          class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="grid-height"
-          type="number"
-          step="1"
-          bind:value={fields.height}
-          placeholder="Height"
-        />
-        <Message name="height" />
-      </div>
-      <div class="w-full md:w-1/2 px-3">
-        <label
-          class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
-          for="grid-weight"
-        >
-          Weight (kgs)
-        </label>
-        <input
-          class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="grid-weight"
-          type="number"
-          step="0.01"
-          bind:value={fields.weight}
-          placeholder="Weight"
-        />
-        <Message name="weight" />
-      </div>
-    </div>
-
-    {#if gender === "F"}
-      <div class="flex flex-wrap -mx-3 mb-6">
-        <p class="block tracking-wide text-gray-600 text-xs font-bold mb-2">
-          Please check the field below if you are pregnant
-        </p>
-        <div class="w-full px-3 mb-6 md:mb-0 inline-flex items-center">
-          <input
-            class="mr-3 mb-2"
-            type="checkbox"
-            bind:checked={fields.pregnant}
-          />
-          <p
-            class="block tracking-wide text-gray-600 text-sm font-semibold mb-2"
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fas"
+            data-icon="times-circle"
+            class="w-4 h-4 mr-2 fill-current"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
           >
-            I'm pregnant
-          </p>
-          <Message name="pregnant" />
+            <path
+              fill="currentColor"
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"
+            />
+          </svg>
+          {messageError}
+        </div>
+      {/if}
+
+      <div class="flex flex-wrap -mx-3 mb-3">
+        <div class="w-full px-3 mb-6 md:mb-0">
+          <label
+            class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
+            for="grid-conditions"
+          >
+            Conditions (select at least 1)
+          </label>
+
+          <MultiSelect
+            inputClass="h-10"
+            options={medicalConditions}
+            selectedValues={fields.illnesses}
+            on:change={handleChangeMultipleSelect}
+            on:remove={handleChangeMultipleSelect}
+          />
+          <Message name="illnesses" />
         </div>
       </div>
-    {/if}
 
-    {#if fields.illnesses.length}
-      <button
-        type="submit"
-        class="bg-white hover:bg-purple-600 text-purple-600 
+      <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label
+            class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
+            for="grid-height"
+          >
+            Height (cm)
+          </label>
+          <input
+            class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-height"
+            type="number"
+            step="1"
+            bind:value={fields.height}
+            placeholder="Height"
+          />
+          <Message name="height" />
+        </div>
+        <div class="w-full md:w-1/2 px-3">
+          <label
+            class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
+            for="grid-weight"
+          >
+            Weight (kgs)
+          </label>
+          <input
+            class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-weight"
+            type="number"
+            step="0.01"
+            bind:value={fields.weight}
+            placeholder="Weight"
+          />
+          <Message name="weight" />
+        </div>
+      </div>
+
+      {#if gender === "F"}
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <p class="block tracking-wide text-gray-600 text-xs font-bold mb-2">
+            Please check the field below if you are pregnant
+          </p>
+          <div class="w-full px-3 mb-6 md:mb-0 inline-flex items-center">
+            <input
+              class="mr-3 mb-2"
+              type="checkbox"
+              bind:checked={fields.pregnant}
+            />
+            <p
+              class="block tracking-wide text-gray-600 text-sm font-semibold mb-2"
+            >
+              I'm pregnant
+            </p>
+            <Message name="pregnant" />
+          </div>
+        </div>
+      {/if}
+
+      {#if fields.illnesses.length}
+        <button
+          type="submit"
+          class="bg-white hover:bg-purple-600 text-purple-600 
            font-semibold hover:text-white py-2 px-4 mt-10
            border-2 border-purple-500 rounded">save</button
-      >
-    {:else}
-      <button
-        disabled
-        class="bg-white text-purple-600 
+        >
+      {:else}
+        <button
+          disabled
+          class="bg-white text-purple-600 
              font-semibold py-2 px-4 mt-10
              border-2 border-purple-600 rounded opacity-50 cursor-not-allowed"
-      >
-        save
-      </button>
-    {/if}
-  </Form>
-</div>
+        >
+          save
+        </button>
+      {/if}
+    </Form>
+  </div>
+{/if}

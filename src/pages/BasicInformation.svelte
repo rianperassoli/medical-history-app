@@ -72,11 +72,10 @@
           redirectToMedicalHistory();
         }
       } catch (error) {
-        if (error.response.data.message) {
-          messageError = error.response.data.message;
-        } else {
-          messageError = "Fail to create. Try again."
-        }
+        messageError =
+          error.response && error.response.data && error.response.data.message
+            ? error.response.data.message
+            : "Fail to create. Try again.";
 
         setTimeout(() => {
           messageError = "";
@@ -86,11 +85,9 @@
   };
 </script>
 
-<HeaderPage title={"Basic information"} showBackButton/>
+<HeaderPage title={"Basic information"} showBackButton />
 
-<div
-  class="m-auto mt-5 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded"
->
+<div class="m-auto mt-5 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded">
   <Form
     class="form flex flex-col p-50"
     {schema}

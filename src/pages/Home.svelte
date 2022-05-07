@@ -4,6 +4,7 @@
   import ListItem from "../components/ListItem.svelte";
   import * as dateUtil from "../util/DateUtil";
   import HeaderPage from "../components/HeaderPage.svelte";
+  import NoDataToDisplay from "../components/NoDataToDisplay.svelte";
 
   interface IUser {
     fullname: string;
@@ -44,10 +45,14 @@
   loadData();
 </script>
 
-<HeaderPage title='Medical history list' />
+<HeaderPage title="Medical history list" />
 
 <section class="flex flex-col items-center">
-  {#each users as user}
-    <ListItem {...user} />
-  {/each}
+  {#if users.length}
+    {#each users as user}
+      <ListItem {...user} />
+    {/each}
+  {:else}
+    <NoDataToDisplay />
+  {/if}
 </section>

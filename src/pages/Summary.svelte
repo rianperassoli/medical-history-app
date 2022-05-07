@@ -70,7 +70,7 @@
         <div class="flex inline-flex">
           <div class="w-2/4 rounded overflow-hidden m-1">
             <div class="px-6 py-4">
-              <p class="text-gray-700 text-base">
+              <p class="text-gray-600 text-base">
                 {`${user.gender}, ${user.age} years old`}
               </p>
               {#if user.gender === "Female"}
@@ -79,11 +79,11 @@
                 </p>
               {/if}
 
-              <p class="text-gray-700 text-base">Birthdate: {user.birthdate}</p>
-              <p class="text-gray-700 text-base">
+              <p class="text-gray-600 text-base">Birthdate: {user.birthdate}</p>
+              <p class="text-gray-600 text-base">
                 {`Height ${user.medicalHistory.height / 100} m`}
               </p>
-              <p class="text-gray-700 text-base">
+              <p class="text-gray-600 text-base">
                 {`Weight ${user.medicalHistory.weight} kgs`}
               </p>
             </div>
@@ -91,12 +91,12 @@
 
           <div class="w-2/4 rounded overflow-hidden m-1">
             <div class="px-6 py-4">
-              <div class="text-gray-700 font-bold text-xl mb-2">
+              <div class="text-gray-600 font-bold text-xl mb-2">
                 Medical conditions
               </div>
 
               {#each user.medicalHistory.illnesses as illness}
-                <p class="text-gray-700 text-base">{illness}</p>
+                <p class="text-gray-600 text-base">{illness}</p>
               {/each}
             </div>
           </div>
@@ -118,12 +118,12 @@
 
     <div class="w-full rounded overflow-hidden shadow-lg m-1">
       <div class="px-6 py-4">
-        <div class="text-gray-700 font-bold text-xl mb-2">Contact</div>
+        <div class="text-gray-600 font-bold text-xl mb-2">Contact</div>
 
-        <p class="text-gray-700 text-base">
+        <p class="text-gray-600 text-base">
           Email: {user.email}
         </p>
-        <p class="text-gray-700 text-base">
+        <p class="text-gray-600 text-base">
           Phone: {user.phone}
         </p>
       </div>

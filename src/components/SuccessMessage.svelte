@@ -29,6 +29,6 @@
     />
   </svg>
 
-  <span class='mt-5 text-gray-400 font-semibold'>added successfully</span>
+  <span class='mt-5 text-gray-300 font-semibold'>added successfully</span>
   
 </div>

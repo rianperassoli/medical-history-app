@@ -26,10 +26,10 @@
         <p class="flex-auto text-lg text-black font-bold">{fullname}</p>
         <p class="flex-none text-xs text-gray-300 text-right">created at {created_at}</p>
       </div>
-      <p class="text-sm text-gray-500">{email}</p>
+      <p class="text-sm text-gray-600">{email}</p>
       <div class="flex">    
-        <p class="flex-none text-sm text-gray-500">birthdate {birthdate}</p>
-        <p class="flex-auto text-sm text-gray-500"> {`${gender ? `, ${gender}` : ''}`}</p>
+        <p class="flex-none text-sm text-gray-600">birthdate {birthdate}</p>
+        <p class="flex-auto text-sm text-gray-600"> {`${gender ? `, ${gender}` : ''}`}</p>
       </div>
     </div>
     <button

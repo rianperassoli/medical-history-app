@@ -122,13 +122,13 @@
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label
-          class="block tracking-wide text-gray-700 text-xs font-bold mb-2"
+          class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
           for="grid-first-name"
         >
           First Name
         </label>
         <input
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+          class="appearance-none block w-full bg-gray-200 text-gray-600 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
           type="text"
           bind:value={fields.first_name}
@@ -138,13 +138,13 @@
       </div>
       <div class="w-full md:w-1/2 px-3">
         <label
-          class="block tracking-wide text-gray-700 text-xs font-bold mb-2"
+          class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
           for="grid-last-name"
         >
           Last Name
         </label>
         <input
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
           type="text"
           bind:value={fields.last_name}
@@ -157,13 +157,13 @@
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label
-          class="block tracking-wide text-gray-700 text-xs font-bold mb-2"
+          class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
           for="grid-birthdate"
         >
           Birthdate
         </label>
         <input
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-birthdate"
           type="date"
           bind:value={fields.birthdate}
@@ -173,13 +173,13 @@
 
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <div class="form-group flex flex-col">
-          <p class="block tracking-wide text-gray-700 text-xs font-bold">
+          <p class="block tracking-wide text-gray-600 text-xs font-bold">
             Gender
           </p>
           <div class="form-check inline-flex my-4">
             <div class="radio">
               <label
-                class="block tracking-wide text-gray-700 text-xs inline-flex items-center mr-2"
+                class="block tracking-wide text-gray-600 text-xs inline-flex items-center mr-2"
               >
                 <input
                   class="mr-1"
@@ -192,7 +192,7 @@
             </div>
             <div class="radio">
               <label
-                class="block tracking-wide text-gray-700 text-xs inline-flex items-center"
+                class="block tracking-wide text-gray-600 text-xs inline-flex items-center"
               >
                 <input
                   class="mr-1"
@@ -212,13 +212,13 @@
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <label
-          class="block tracking-wide text-gray-700 text-xs font-bold mb-2"
+          class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
           for="grid-email"
         >
           Email
         </label>
         <input
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-email"
           type="text"
           bind:value={fields.email}
@@ -228,13 +228,13 @@
       </div>
       <div class="w-full md:w-1/2 px-3">
         <label
-          class="block tracking-wide text-gray-700 text-xs font-bold mb-2"
+          class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
           for="grid-phone"
         >
           Phone
         </label>
         <input
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-phone"
           type="tel"
           maxlength="15"
@@ -250,7 +250,7 @@
       type="submit"
       class="bg-white hover:bg-purple-600 text-purple-600 
            font-semibold hover:text-white py-2 px-4 mt-10
-           border-2 border-purple-500 rounded">continue</button
+           border-2 border-purple-600 rounded">continue</button
     >
   </Form>
 </div>

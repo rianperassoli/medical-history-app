@@ -8,11 +8,11 @@ const diffYearsFromToday = (date: string): number => {
 }
 
 const formatDate = (date: string): string => {
-  return dayjs(date).format('DD/MM/YYYY')
+  return dayjs(date).format('YYYY-MM-DD')
 }
 
 const formatDateTime = (date: string): string => {
-  return dayjs(date).format('DD/MM/YYYY HH:mm:ss')
+  return dayjs(date).format('YYYY-MM-DD HH:mm:ss')
 }
 
 export { diffYearsFromToday, formatDate, formatDateTime }

@@ -3,6 +3,7 @@
   import * as yup from "yup";
   import { Form, Message } from "svelte-yup";
   import { imask } from "svelte-imask";
+  import SveltyPicker from "svelty-picker";
 
   import { user } from "../stores";
   import { api } from "../services/api";
@@ -25,8 +26,6 @@
     mask: "(00) 00000-0000",
   };
 
-  let messageError = "";
-
   let schema = yup.object().shape({
     email: yup.string().required().email().label("Email"),
     first_name: yup.string().required().label("First name"),
@@ -40,7 +39,11 @@
         phoneRegExp,
         `The phone number must be on format ${options.mask}`
       ),
-    birthdate: yup.date().max(new Date(), 'Birthdate must be earlier than today').required().label("Birthdate"),
+    birthdate: yup
+      .date()
+      .max(new Date(), "Birthdate must be earlier than today")
+      .required()
+      .label("Birthdate"),
   });
 
   let fields = {
@@ -51,6 +54,8 @@
     phone: "",
     birthdate: "",
   };
+
+  let messageError = "";
 
   let submitted = false;
   let isValid;
@@ -162,10 +167,10 @@
         >
           Birthdate
         </label>
-        <input
-          class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        <SveltyPicker
           id="grid-birthdate"
-          type="date"
+          inputClasses="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          format="yyyy-mm-dd"
           bind:value={fields.birthdate}
         />
         <Message name="birthdate" />

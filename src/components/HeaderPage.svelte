@@ -15,10 +15,10 @@
   };
 </script>
 
-<div class="m-auto bg-white mh-3/5 w-3/5 px-8 pt-6 pb-8 rounded flex flex-row items-center">
+<div class="m-auto bg-white md:mh-3/5 md:w-3/5 md:px-8 md:pt-6 md:pb-8 rounded flex flex-row items-center">
   {#if showBackButton}
   <button
-    class="bg-white hover:bg-gray-100 text-gray-300 font-bold py-2 px-4 rounded inline-flex items-center"
+    class="bg-white hover:bg-gray-100 text-gray-300 font-bold py-1 px-2 md:py-2 md:px-4 rounded inline-flex items-center"
     on:click={handleHome}>
     <svg
       class="w-6 h-6 dark:text-white mr-1"
@@ -38,7 +38,7 @@
   </button>
   {/if}
 
-  <h1 class="ml-5 flex-auto text-purple-600 font-semibold text-lg">{title}</h1>
+  <h1 class="ml-5 flex-auto text-purple-600 font-semibold text-xs sm:text-lg">{title}</h1>
 
   <button
     class="bg-white hover:bg-purple-600 text-purple-600 

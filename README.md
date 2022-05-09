@@ -32,11 +32,11 @@ npm run build
 ...and start the app using
 
 ```bash
-yarn start
+yarn start-local
 
 or
 
-npm run start
+npm run start-local
 ```
 
 Open your browser and access the url to use the app: http://localhost:8080

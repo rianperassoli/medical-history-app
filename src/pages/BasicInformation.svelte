@@ -31,19 +31,8 @@
     first_name: yup.string().required().label("First name"),
     last_name: yup.string().required().label("Last name"),
     gender: yup.string().required().label("Gender"),
-    phone: yup
-      .string()
-      .max(15)
-      .required()
-      .matches(
-        phoneRegExp,
-        `The phone number must be on format ${options.mask}`
-      ),
-    birthdate: yup
-      .date()
-      .max(new Date(), "Birthdate must be earlier than today")
-      .required()
-      .label("Birthdate"),
+    phone: yup.string().max(15).required().matches(phoneRegExp, `The phone number must be on format ${options.mask}`),
+    birthdate: yup.date().max(new Date(), "Birthdate must be earlier than today").required().label("Birthdate"),
   });
 
   let fields = {
@@ -93,13 +82,7 @@
 <HeaderPage title={"Basic information"} showBackButton />
 
 <div class="m-auto mt-5 bg-white md:mh-3/5 w-4/5 md:w-3/5 shadow-md px-4 md:px-8 pt-2 md:pt-6 pb-8 rounded">
-  <Form
-    class="form flex flex-col p-50"
-    {schema}
-    {fields}
-    submitHandler={formSubmit}
-    {submitted}
-  >
+  <Form class="form flex flex-col p-50" {schema} {fields} submitHandler={formSubmit} {submitted}>
     {#if messageError}
       <div
         class="bg-red-100 rounded-lg py-2 md:py-5 px-2 md:px-6 mb-3 text-sm md:text-base text-red-700 inline-flex items-center w-full"
@@ -126,10 +109,7 @@
 
     <div class="flex flex-wrap -mx-3 mb-3">
       <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
-        <label
-          class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
-          for="grid-first-name"
-        >
+        <label class="block tracking-wide text-gray-600 text-xs font-bold mb-2" for="grid-first-name">
           First Name
         </label>
         <input
@@ -142,12 +122,7 @@
         <Message name="first_name" />
       </div>
       <div class="w-full md:w-1/2 px-3">
-        <label
-          class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
-          for="grid-last-name"
-        >
-          Last Name
-        </label>
+        <label class="block tracking-wide text-gray-600 text-xs font-bold mb-2" for="grid-last-name"> Last Name </label>
         <input
           class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-last-name"
@@ -161,12 +136,7 @@
 
     <div class="flex flex-wrap -mx-3 mb-3">
       <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
-        <label
-          class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
-          for="grid-birthdate"
-        >
-          Birthdate
-        </label>
+        <label class="block tracking-wide text-gray-600 text-xs font-bold mb-2" for="grid-birthdate"> Birthdate </label>
         <SveltyPicker
           id="grid-birthdate"
           inputClasses="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -178,33 +148,17 @@
 
       <div class="w-full md:w-1/2 px-3 md:mb-0">
         <div class="form-group flex flex-col">
-          <p class="block tracking-wide text-gray-600 text-xs font-bold">
-            Gender
-          </p>
+          <p class="block tracking-wide text-gray-600 text-xs font-bold">Gender</p>
           <div class="form-check inline-flex my-4">
             <div class="radio">
-              <label
-                class="block tracking-wide text-gray-600 text-xs inline-flex items-center mr-2"
-              >
-                <input
-                  class="mr-1"
-                  type="radio"
-                  value="M"
-                  bind:group={fields.gender}
-                />
+              <label class="block tracking-wide text-gray-600 text-xs inline-flex items-center mr-2">
+                <input class="mr-1" type="radio" value="M" bind:group={fields.gender} />
                 Male
               </label>
             </div>
             <div class="radio">
-              <label
-                class="block tracking-wide text-gray-600 text-xs inline-flex items-center"
-              >
-                <input
-                  class="mr-1"
-                  type="radio"
-                  value="F"
-                  bind:group={fields.gender}
-                />
+              <label class="block tracking-wide text-gray-600 text-xs inline-flex items-center">
+                <input class="mr-1" type="radio" value="F" bind:group={fields.gender} />
                 Female
               </label>
             </div>
@@ -216,12 +170,7 @@
 
     <div class="flex flex-wrap -mx-3 mb-3">
       <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
-        <label
-          class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
-          for="grid-email"
-        >
-          Email
-        </label>
+        <label class="block tracking-wide text-gray-600 text-xs font-bold mb-2" for="grid-email"> Email </label>
         <input
           class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-email"
@@ -232,12 +181,7 @@
         <Message name="email" />
       </div>
       <div class="w-full md:w-1/2 px-3">
-        <label
-          class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
-          for="grid-phone"
-        >
-          Phone
-        </label>
+        <label class="block tracking-wide text-gray-600 text-xs font-bold mb-2" for="grid-phone"> Phone </label>
         <input
           class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-phone"

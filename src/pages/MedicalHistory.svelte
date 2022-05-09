@@ -67,10 +67,7 @@
     isValid = schema.isValidSync(fields);
     if (isValid) {
       try {
-        const response = await api.post(
-          `/user/${$user.id}/medical-history`,
-          fields
-        );
+        const response = await api.post(`/user/${$user.id}/medical-history`, fields);
 
         showSuccessMessage = true;
 
@@ -98,9 +95,7 @@
         fields.illnesses.push(event.detail.option);
         break;
       case "remove":
-        fields.illnesses = fields.illnesses.filter(
-          (item) => item !== event.detail.option
-        );
+        fields.illnesses = fields.illnesses.filter((item) => item !== event.detail.option);
         break;
       case "removeAll":
         fields.illnesses = [];
@@ -115,16 +110,8 @@
 {:else}
   <HeaderPage title={"Medical conditions"} showBackButton />
 
-  <div
-    class="m-auto mt-5 bg-white md:mh-3/5 w-4/5 md:w-3/5 shadow-md px-4 md:px-8 pt-2 md:pt-6 pb-8 rounded"
-  >
-    <Form
-      class="form flex flex-col p-50"
-      {schema}
-      {fields}
-      submitHandler={formSubmit}
-      {submitted}
-    >
+  <div class="m-auto mt-5 bg-white md:mh-3/5 w-4/5 md:w-3/5 shadow-md px-4 md:px-8 pt-2 md:pt-6 pb-8 rounded">
+    <Form class="form flex flex-col p-50" {schema} {fields} submitHandler={formSubmit} {submitted}>
       {#if messageError}
         <div
           class="bg-red-100 rounded-lg py-2 md:py-5 px-2 md:px-6 mb-3 text-sm md:text-base text-red-700 inline-flex items-center w-full"
@@ -151,10 +138,7 @@
 
       <div class="flex flex-wrap -mx-3 mb-3">
         <div class="w-full px-3 mb-6 md:mb-0">
-          <label
-            class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
-            for="grid-conditions"
-          >
+          <label class="block tracking-wide text-gray-600 text-xs font-bold mb-2" for="grid-conditions">
             Conditions (select at least 1)
           </label>
 
@@ -171,10 +155,7 @@
 
       <div class="flex flex-wrap -mx-3 mb-3">
         <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
-          <label
-            class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
-            for="grid-height"
-          >
+          <label class="block tracking-wide text-gray-600 text-xs font-bold mb-2" for="grid-height">
             Height (cm)
           </label>
           <input
@@ -188,10 +169,7 @@
           <Message name="height" />
         </div>
         <div class="w-full md:w-1/2 px-3">
-          <label
-            class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
-            for="grid-weight"
-          >
+          <label class="block tracking-wide text-gray-600 text-xs font-bold mb-2" for="grid-weight">
             Weight (kgs)
           </label>
           <input
@@ -212,16 +190,8 @@
             Please check the field below if you are pregnant
           </p>
           <div class="w-full px-3 mb-6 md:mb-0 inline-flex items-center">
-            <input
-              class="mr-3 mb-2"
-              type="checkbox"
-              bind:checked={fields.pregnant}
-            />
-            <p
-              class="block tracking-wide text-gray-600 text-sm font-semibold mb-2"
-            >
-              I'm pregnant
-            </p>
+            <input class="mr-3 mb-2" type="checkbox" bind:checked={fields.pregnant} />
+            <p class="block tracking-wide text-gray-600 text-sm font-semibold mb-2">I'm pregnant</p>
             <Message name="pregnant" />
           </div>
         </div>

@@ -48,10 +48,7 @@
 
   $: filteredList = searchTerm
     ? users.filter(
-        (user) =>
-          stringUtil
-            .prepareToCompare(user.fullname)
-            .indexOf(stringUtil.prepareToCompare(searchTerm)) !== -1
+        (user) => stringUtil.prepareToCompare(user.fullname).indexOf(stringUtil.prepareToCompare(searchTerm)) !== -1
       )
     : users;
 </script>
@@ -59,7 +56,6 @@
 <HeaderPage title="Medical history list" />
 
 <section class="flex flex-col items-center">
-
   <div class="flex justify-center">
     <div class="mb-3 xl:w-96">
       <div class="input-group relative flex flex-row w-full my-5 rounded">

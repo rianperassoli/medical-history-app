@@ -9,7 +9,7 @@
 
   import { user as userStored } from "../stores";
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   export let email;
 
   let user = null;
@@ -60,9 +60,7 @@
 
       <div class="flex inline-flex">
         {#if user.age >= 60}
-          <p class="text-sm text-blue-300 font-semibold my-2 md:my-5">
-            SENIORCARE PATIENT
-          </p>
+          <p class="text-sm text-blue-300 font-semibold my-2 md:my-5">SENIORCARE PATIENT</p>
         {/if}
       </div>
 
@@ -79,7 +77,9 @@
                 </p>
               {/if}
 
-              <p class="text-gray-600 text-sm md:text-base">Birthdate: {user.birthdate}</p>
+              <p class="text-gray-600 text-sm md:text-base">
+                Birthdate: {user.birthdate}
+              </p>
               <p class="text-gray-600 text-sm md:text-base">
                 {`Height ${user.medicalHistory.height / 100} m`}
               </p>
@@ -91,9 +91,7 @@
 
           <div class="w-1/4 sm:w-2/4 rounded m-1">
             <div class="p-2 md:px-6 md:py-4">
-              <div class="text-gray-600 font-bold text-sm md:text-xl mb-2">
-                Medical conditions
-              </div>
+              <div class="text-gray-600 font-bold text-sm md:text-xl mb-2">Medical conditions</div>
 
               {#each user.medicalHistory.illnesses as illness}
                 <p class="text-gray-600 text-sm md:text-base">{illness}</p>

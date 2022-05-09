@@ -44,7 +44,7 @@
 
 <HeaderPage title={"Summary"} showBackButton />
 
-<div class="m-auto mt-5 bg-white md:mh-3/5 w-4/5 md:w-3/5 shadow-md px-4 md:px-8 pt-2 md:pt-6 pb-8 rounded">
+<div class="m-auto mt-5 bg-white md:mh-3/5 w-11/12 md:w-3/5 shadow-md px-4 md:px-8 pt-2 md:pt-6 pb-8 rounded">
   {#if user}
     <div class="flex flex-col">
       <div class="flex flex-col md:flex-row md:inline-flex md:items-center">
@@ -68,7 +68,7 @@
 
       {#if user.medicalHistory}
         <div class="flex inline-flex">
-          <div class="w-2/4 rounded overflow-hidden m-1">
+          <div class="w-3/4 sm:w-2/4 rounded overflow-hidden m-1">
             <div class="p-2 md:px-6 md:py-4">
               <p class="text-gray-600 text-sm md:text-base">
                 {`${user.gender}, ${user.age} years old`}
@@ -89,9 +89,9 @@
             </div>
           </div>
 
-          <div class="w-2/4 rounded overflow-hidden m-1">
+          <div class="w-1/4 sm:w-2/4 rounded m-1">
             <div class="p-2 md:px-6 md:py-4">
-              <div class="text-gray-600 font-bold text-lg md:text-xl mb-2">
+              <div class="text-gray-600 font-bold text-sm md:text-xl mb-2">
                 Medical conditions
               </div>
 
@@ -113,7 +113,7 @@
 
     <div class="w-full rounded overflow-hidden shadow-lg m-1">
       <div class="p-2 md:px-6 md:py-4">
-        <div class="text-gray-600 font-bold text-lg md:text-xl mb-2">Contact</div>
+        <div class="text-gray-600 font-bold text-sm md:text-xl mb-2">Contact</div>
 
         <p class="text-gray-600 text-sm md:text-base">
           Email: {user.email}
@@ -124,7 +124,7 @@
       </div>
     </div>
   {:else}
-    <div class="m-20">
+    <div class="m-12">
       <Loading />
     </div>
   {/if}

@@ -59,7 +59,7 @@
       </div>
 
       <div class="flex inline-flex">
-        {#if user.age >= 0}
+        {#if user.age >= 60}
           <p class="text-sm text-blue-300 font-semibold my-2 md:my-5">
             SENIORCARE PATIENT
           </p>

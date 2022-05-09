@@ -22,7 +22,7 @@
   <div class="text-left space-y-2">
     
     <div class="space-y-0.5">
-      <div class="flex">    
+      <div class="flex flex-col items-start md:flex-row">    
         <p class="flex-auto text-lg text-black font-bold">{fullname}</p>
         <p class="flex-none text-xs text-gray-300 text-right">created at {created_at}</p>
       </div>

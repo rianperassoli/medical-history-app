@@ -7,7 +7,7 @@
   import { user } from "../stores";
   import { api } from "../services/api";
   import HeaderPage from "../components/HeaderPage.svelte";
-import SuccessMessage from "../components/SuccessMessage.svelte";
+  import SuccessMessage from "../components/SuccessMessage.svelte";
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,14 +42,14 @@ import SuccessMessage from "../components/SuccessMessage.svelte";
       .typeError("Height must be a number")
       .positive("Height must be a positive value")
       .required()
-      .max(300, 'Height must be 300 cm (3 mts) or less')
+      .max(300, "Height must be 300 cm (3 mts) or less")
       .label("Height"),
     weight: yup
       .number()
       .typeError("Weight must be a number")
       .positive("Weight must be a positive value")
       .required()
-      .max(999, 'Weight must be less than 1000 kg')
+      .max(999, "Weight must be less than 1000 kg")
       .label("Weight"),
   });
 
@@ -79,7 +79,10 @@ import SuccessMessage from "../components/SuccessMessage.svelte";
           redirectToHome();
         }, 1500);
       } catch (error) {
-        messageError = "Fail to create a medical history. Try again.";
+        messageError =
+          error.response && error.response.data && error.response.data.message
+            ? error.response.data.message
+            : "Fail to create. Try again.";
 
         setTimeout(() => {
           messageError = "";
@@ -88,6 +91,7 @@ import SuccessMessage from "../components/SuccessMessage.svelte";
     }
   };
 
+  let ableToSave = false;
   const handleChangeMultipleSelect = (event) => {
     switch (event.detail.type) {
       case "add":
@@ -102,6 +106,7 @@ import SuccessMessage from "../components/SuccessMessage.svelte";
         fields.illnesses = [];
         break;
     }
+    ableToSave = fields.illnesses.length > 0;
   };
 </script>
 
@@ -111,7 +116,7 @@ import SuccessMessage from "../components/SuccessMessage.svelte";
   <HeaderPage title={"Medical conditions"} showBackButton />
 
   <div
-    class="m-auto mt-5 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded"
+    class="m-auto mt-5 bg-white md:mh-3/5 w-4/5 md:w-3/5 shadow-md px-4 md:px-8 pt-2 md:pt-6 pb-8 rounded"
   >
     <Form
       class="form flex flex-col p-50"
@@ -122,7 +127,7 @@ import SuccessMessage from "../components/SuccessMessage.svelte";
     >
       {#if messageError}
         <div
-          class="bg-red-100 rounded-lg py-5 px-6 mb-3 text-base text-red-700 inline-flex items-center w-full"
+          class="bg-red-100 rounded-lg py-2 md:py-5 px-2 md:px-6 mb-3 text-sm md:text-base text-red-700 inline-flex items-center w-full"
           role="alert"
         >
           <svg
@@ -164,8 +169,8 @@ import SuccessMessage from "../components/SuccessMessage.svelte";
         </div>
       </div>
 
-      <div class="flex flex-wrap -mx-3 mb-6">
-        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <div class="flex flex-wrap -mx-3 mb-3">
+        <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
           <label
             class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
             for="grid-height"
@@ -222,7 +227,7 @@ import SuccessMessage from "../components/SuccessMessage.svelte";
         </div>
       {/if}
 
-      {#if fields.illnesses.length}
+      {#if ableToSave}
         <button
           type="submit"
           class="bg-white hover:bg-purple-600 text-purple-600 

@@ -44,10 +44,10 @@
 
 <HeaderPage title={"Summary"} showBackButton />
 
-<div class="m-auto mt-5 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded">
+<div class="m-auto mt-5 bg-white md:mh-3/5 w-4/5 md:w-3/5 shadow-md px-4 md:px-8 pt-2 md:pt-6 pb-8 rounded">
   {#if user}
     <div class="flex flex-col">
-      <div class="flex inline-flex items-center">
+      <div class="flex flex-col md:flex-row md:inline-flex md:items-center">
         <div class="flex-auto">
           <p class="text-2xl font-bold text-gray-600">
             {user.fullname}
@@ -59,8 +59,8 @@
       </div>
 
       <div class="flex inline-flex">
-        {#if user.age >= 60}
-          <p class="text-sm text-blue-300 font-semibold my-5">
+        {#if user.age >= 0}
+          <p class="text-sm text-blue-300 font-semibold my-2 md:my-5">
             SENIORCARE PATIENT
           </p>
         {/if}
@@ -69,34 +69,34 @@
       {#if user.medicalHistory}
         <div class="flex inline-flex">
           <div class="w-2/4 rounded overflow-hidden m-1">
-            <div class="px-6 py-4">
-              <p class="text-gray-600 text-base">
+            <div class="p-2 md:px-6 md:py-4">
+              <p class="text-gray-600 text-sm md:text-base">
                 {`${user.gender}, ${user.age} years old`}
               </p>
               {#if user.gender === "Female"}
-                <p class="text-pink-500 text-base">
+                <p class="text-pink-500 text-sm md:text-base">
                   {`Pregnant: ${user.medicalHistory.pregnant ? "Yes" : "No"}`}
                 </p>
               {/if}
 
-              <p class="text-gray-600 text-base">Birthdate: {user.birthdate}</p>
-              <p class="text-gray-600 text-base">
+              <p class="text-gray-600 text-sm md:text-base">Birthdate: {user.birthdate}</p>
+              <p class="text-gray-600 text-sm md:text-base">
                 {`Height ${user.medicalHistory.height / 100} m`}
               </p>
-              <p class="text-gray-600 text-base">
+              <p class="text-gray-600 text-sm md:text-base">
                 {`Weight ${user.medicalHistory.weight} kgs`}
               </p>
             </div>
           </div>
 
           <div class="w-2/4 rounded overflow-hidden m-1">
-            <div class="px-6 py-4">
-              <div class="text-gray-600 font-bold text-xl mb-2">
+            <div class="p-2 md:px-6 md:py-4">
+              <div class="text-gray-600 font-bold text-lg md:text-xl mb-2">
                 Medical conditions
               </div>
 
               {#each user.medicalHistory.illnesses as illness}
-                <p class="text-gray-600 text-base">{illness}</p>
+                <p class="text-gray-600 text-sm md:text-base">{illness}</p>
               {/each}
             </div>
           </div>
@@ -111,25 +111,20 @@
       {/if}
     </div>
 
-    <div>
-      <p class="text-sm" />
-      <p class="text-sm" />
-    </div>
-
     <div class="w-full rounded overflow-hidden shadow-lg m-1">
-      <div class="px-6 py-4">
-        <div class="text-gray-600 font-bold text-xl mb-2">Contact</div>
+      <div class="p-2 md:px-6 md:py-4">
+        <div class="text-gray-600 font-bold text-lg md:text-xl mb-2">Contact</div>
 
-        <p class="text-gray-600 text-base">
+        <p class="text-gray-600 text-sm md:text-base">
           Email: {user.email}
         </p>
-        <p class="text-gray-600 text-base">
+        <p class="text-gray-600 text-sm md:text-base">
           Phone: {user.phone}
         </p>
       </div>
     </div>
   {:else}
-    <div class="">
+    <div class="m-20">
       <Loading />
     </div>
   {/if}

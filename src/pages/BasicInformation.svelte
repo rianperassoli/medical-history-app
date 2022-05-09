@@ -92,7 +92,7 @@
 
 <HeaderPage title={"Basic information"} showBackButton />
 
-<div class="m-auto mt-5 bg-white mh-3/5 w-3/5 shadow-md px-8 pt-6 pb-8 rounded">
+<div class="m-auto mt-5 bg-white md:mh-3/5 w-4/5 md:w-3/5 shadow-md px-4 md:px-8 pt-2 md:pt-6 pb-8 rounded">
   <Form
     class="form flex flex-col p-50"
     {schema}
@@ -102,7 +102,7 @@
   >
     {#if messageError}
       <div
-        class="bg-red-100 rounded-lg py-5 px-6 mb-3 text-base text-red-700 inline-flex items-center w-full"
+        class="bg-red-100 rounded-lg py-2 md:py-5 px-2 md:px-6 mb-3 text-sm md:text-base text-red-700 inline-flex items-center w-full"
         role="alert"
       >
         <svg
@@ -124,8 +124,8 @@
       </div>
     {/if}
 
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+    <div class="flex flex-wrap -mx-3 mb-3">
+      <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
         <label
           class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
           for="grid-first-name"
@@ -159,8 +159,8 @@
       </div>
     </div>
 
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+    <div class="flex flex-wrap -mx-3 mb-3">
+      <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
         <label
           class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
           for="grid-birthdate"
@@ -176,7 +176,7 @@
         <Message name="birthdate" />
       </div>
 
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <div class="w-full md:w-1/2 px-3 md:mb-0">
         <div class="form-group flex flex-col">
           <p class="block tracking-wide text-gray-600 text-xs font-bold">
             Gender
@@ -214,8 +214,8 @@
       </div>
     </div>
 
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+    <div class="flex flex-wrap -mx-3 mb-3">
+      <div class="w-full md:w-1/2 px-3 mb-3 md:mb-0">
         <label
           class="block tracking-wide text-gray-600 text-xs font-bold mb-2"
           for="grid-email"
@@ -254,7 +254,7 @@
     <button
       type="submit"
       class="bg-white hover:bg-purple-600 text-purple-600 
-           font-semibold hover:text-white py-2 px-4 mt-10
+           font-semibold hover:text-white py-2 px-4 mt-4 md:mt-10
            border-2 border-purple-600 rounded">continue</button
     >
   </Form>

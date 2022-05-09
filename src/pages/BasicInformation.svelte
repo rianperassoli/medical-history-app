@@ -133,7 +133,7 @@
           First Name
         </label>
         <input
-          class="appearance-none block w-full bg-gray-200 text-gray-600 border border-red-500 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+          class="appearance-none block w-full bg-gray-200 text-gray-600 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-first-name"
           type="text"
           bind:value={fields.first_name}

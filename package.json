@@ -6,7 +6,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public --single",
-    "heroku-postbuild": "npm run build && npm run start"
+    "heroku-postbuild": "yarn start"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",

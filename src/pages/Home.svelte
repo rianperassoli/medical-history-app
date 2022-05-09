@@ -44,7 +44,7 @@
     }
   }
 
-  // loadData();
+  loadData();
 
   $: filteredList = searchTerm
     ? users.filter(

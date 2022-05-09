@@ -18,23 +18,28 @@
   };
 </script>
 
-<div class="p-4 m-1 w-11/12 sm:w-1/2 bg-white rounded-xl shadow-lg">
-  <div class="text-left space-y-2">
-    
-    <div class="space-y-0.5">
-      <div class="flex flex-col items-start md:flex-row">    
-        <p class="flex-auto text-lg text-black font-bold">{fullname}</p>
-        <p class="flex-none text-xs text-gray-300 text-right">created at {created_at}</p>
+{#if fullname && email}
+  <div class="p-4 m-1 w-11/12 sm:w-1/2 bg-white rounded-xl shadow-lg">
+    <div class="text-left space-y-2">
+      <div class="space-y-0.5">
+        <div class="flex flex-col items-start md:flex-row">
+          <p class="flex-auto text-lg text-black font-bold">{fullname}</p>
+          <p class="flex-none text-xs text-gray-300 text-right">
+            created at {created_at}
+          </p>
+        </div>
+        <p class="text-sm text-gray-600">{email}</p>
+        <div class="flex">
+          <p class="flex-none text-sm text-gray-600">birthdate {birthdate}</p>
+          <p class="flex-auto text-sm text-gray-600">
+            {`${gender ? `, ${gender}` : ""}`}
+          </p>
+        </div>
       </div>
-      <p class="text-sm text-gray-600">{email}</p>
-      <div class="flex">    
-        <p class="flex-none text-sm text-gray-600">birthdate {birthdate}</p>
-        <p class="flex-auto text-sm text-gray-600"> {`${gender ? `, ${gender}` : ''}`}</p>
-      </div>
+      <button
+        class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+        on:click={redirectToSummary}>More ...</button
+      >
     </div>
-    <button
-      class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
-      on:click={redirectToSummary}>More ...</button
-    >
   </div>
-</div>
+{/if}
